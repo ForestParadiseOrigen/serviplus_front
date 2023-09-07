@@ -12,7 +12,7 @@ const recover = () => {
         <p className="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
         <form action="login.html" method="post">
           <div className="input-group mb-3">
-            <input type="password" className="form-control" placeholder="nueva contraseña" />
+            <input type="password" className="form-control"name="password" id="password" placeholder="nueva contraseña" />
             <div className="input-group-append">
               <div className="input-group-text">
                 <span className="fas fa-lock" />
@@ -20,7 +20,7 @@ const recover = () => {
             </div>
           </div>
           <div className="input-group mb-3">
-            <input type="password" className="form-control" placeholder="confirma tu contraseña" />
+            <input type="password" className="form-control" name="password" id="password" placeholder="confirma tu contraseña" />
             <div className="input-group-append">
               <div className="input-group-text">
                 <span className="fas fa-lock" />

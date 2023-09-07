@@ -171,7 +171,7 @@ const Dashboard = () => {
                     <li className="nav-item">
                       <Link to={""} className="nav-link active">
                         <i className="far fa-circle nav-icon" />
-                        <p>Innicio</p>
+                        <p>Inicio</p>
                       </Link>
                     </li>
                   </ul>
@@ -180,7 +180,7 @@ const Dashboard = () => {
                   <Link to={""} className="nav-link">
                     <i className="nav-icon fas fa-th" />
                     <p>
-                      Agendar cia
+                      Agendar cita
                     </p>
                   </Link>
                 </li>
@@ -383,12 +383,6 @@ const Dashboard = () => {
                   </a>
                   <ul className="nav nav-treeview">
                     <li className="nav-item">
-                      <a href="pages/tables/simple.html" className="nav-link">
-                        <i className="far fa-circle nav-icon" />
-                        <p>Simple Tables</p>
-                      </a>
-                    </li>
-                    <li className="nav-item">
                       <a href="pages/tables/data.html" className="nav-link">
                         <i className="far fa-circle nav-icon" />
                         <p>DataTables</p>
@@ -402,7 +396,6 @@ const Dashboard = () => {
                     </li>
                   </ul>
                 </li>
-                <li className="nav-header">EXAMPLES</li>
                 <li className="nav-item">
                   <a href="pages/calendar.html" className="nav-link">
                     <i className="nav-icon fas fa-calendar-alt" />
@@ -568,41 +561,6 @@ const Dashboard = () => {
                           <a href="pages/examples/recover-password.html" className="nav-link">
                             <i className="far fa-circle nav-icon" />
                             <p>Recover Password v1</p>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="nav-item">
-                      <a href="#" className="nav-link">
-                        <i className="far fa-circle nav-icon" />
-                        <p>
-                          Login &amp; Register v2
-                          <i className="fas fa-angle-left right" />
-                        </p>
-                      </a>
-                      <ul className="nav nav-treeview">
-                        <li className="nav-item">
-                          <a href="pages/examples/login-v2.html" className="nav-link">
-                            <i className="far fa-circle nav-icon" />
-                            <p>Login v2</p>
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a href="pages/examples/register-v2.html" className="nav-link">
-                            <i className="far fa-circle nav-icon" />
-                            <p>Register v2</p>
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a href="pages/examples/forgot-password-v2.html" className="nav-link">
-                            <i className="far fa-circle nav-icon" />
-                            <p>Forgot Password v2</p>
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a href="pages/examples/recover-password-v2.html" className="nav-link">
-                            <i className="far fa-circle nav-icon" />
-                            <p>Recover Password v2</p>
                           </a>
                         </li>
                       </ul>
