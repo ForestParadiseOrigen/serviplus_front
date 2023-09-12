@@ -1,5 +1,7 @@
 import React , { useState,useEffect} from "react";
 import { Link } from "react-router-dom";
+import APIInvoke from '../../utils/APIInvoke';
+import swai from 'sweetalert'
 
 const CrearCuenta = () => {
     const [usuario, setUsuario] = useState({
@@ -21,14 +23,25 @@ const CrearCuenta = () => {
         document.getElementById("nombrePa").focus();
     },[])
 
-    const onSubmit= (e) => {
-            e.preventDefault()
+    const crearcuenta = async ()=>{
+        const data ={
+            nombrePa:usuario.nombrePa,
+            email:usuario.email,
+            password:usuario.password
 
+        }
+        const response = await APIInvoke.invokePOST('/Paciente', data);
+        console.log(response);
+    }
+    const onSubmit= (e) => {
+            e.preventDefault();
+            crearcuenta();
+            alert('Cuenta creada exitosamente');
         }
     
 
     return (
-        <div class="hold-transition register-page">
+        <div className="hold-transition register-page">
             <div className="register-box">
                 <div className="register-logo">
                     <Link to={"#"}><b>Crear Cuenta</b></Link>
