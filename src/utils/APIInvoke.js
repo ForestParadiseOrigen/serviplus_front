@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5501e9e1e75084df62852a7da36536f1dd6cd378
 import config from "../config";
 
 class APIInvoke{

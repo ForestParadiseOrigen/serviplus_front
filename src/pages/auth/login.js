@@ -36,7 +36,7 @@ class Login extends Component {
         return response.data;
       })
       .then((response) => {
-        if (response.length > 0) { // Correct the typo here (lenthg to length)
+        if (response.length > 0) {
           var respuesta = response[0];
           cookies.set("id", respuesta.id, { path: "/" });
           cookies.set("numIdentidadPa", respuesta.numIdentidadPa, { path: "/" });
@@ -48,7 +48,7 @@ class Login extends Component {
           cookies.set("GeneroPa", respuesta.GeneroPa, { path: "/" });
           cookies.set("email", respuesta.email, { path: "/" });
           alert(`Bienvenido al sistema ${respuesta.nombrePa} ${respuesta.apellidoPa}`);
-          window.location.href = "/dashboard"; // Correct the path here (./dashboard to /dashboard)
+          window.location.href = "/dashboard";
         } else {
           alert("El usuario o la contraseña no son correctos");
         }
@@ -107,9 +107,9 @@ class Login extends Component {
 
                 <div className="social-auth-links text-center mb-3">
                   <button
-                    type="button" // Use type="button" for the button
+                    type="button" 
                     className="btn btn-block btn-primary"
-                    onClick={this.iniciarSesion} // Correct the function name here (iniciasrSesion to iniciarSesion)
+                    onClick={this.iniciarSesion}
                   >
                     Ingresar
                   </button>
