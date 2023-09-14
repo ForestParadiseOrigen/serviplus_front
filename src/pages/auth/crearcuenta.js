@@ -31,13 +31,58 @@ const CrearCuenta = () => {
     }, [])
 
     const crearCuenta = async () => {
-        const data = {
-            nombre:usuario.nombre,
-            email: usuario.email,
-            password: usuario.password
-        }
-        const response = await APIInvoke.invokePOST(`/usuario`, data);
-        console.log(response)
+
+        if(password !== confirmar){
+            const msg = 'Las contraseñas no pueden ser diferentes';
+            swal({
+                title:'Advertencia',
+                text: msg,
+                icon:'error',
+                button:{
+                    text:'Vale',
+                    value:true,
+                    visible:true,
+                    className:'btn btn-danger',
+                    closeModal: true
+                }
+            });
+        }else if(password.length < 6){
+            const msg = 'Las contraseñas deben tener minimo 6 caractéres.';
+            swal({
+                title:'Advertencia',
+                text: msg,
+                icon:'error',
+                button:{
+                    text:'Ok',
+                    value:true,
+                    visible:true,
+                    className:'btn btn-danger',
+                    closeModal: true
+                }
+            });
+        }else{
+            const data = {
+                nombre:usuario.nombre,
+                email: usuario.email,
+                password: usuario.password
+            }
+            const response = await APIInvoke.invokePOST(`/usuario`, data);
+            console.log(response)
+
+            const msg = 'El usuario ha sido registrado corréctamente.';
+            swal({
+                title:'Confirmación',
+                text: msg,
+                icon:'success',
+                button:{
+                    text:'Ok',
+                    value:true,
+                    visible:true,
+                    className:'btn btn-info',
+                    closeModal: true
+                }
+            });
+        }        
     }
 
     const onSubmit = (e) => {
