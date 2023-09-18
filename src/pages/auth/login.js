@@ -1,59 +1,84 @@
-import { Link} from "react-router-dom";
-import { Component } from "react";
-import Axios from "axios";
-import Cookies from "universal-cookie";
+import React, {useState, useEffect} from 'react'
+import { Link, useNavigate } from "react-router-dom";
+import APIInvoke  from "../../utils/APIInvoke";
+import swal from 'sweetalert';
 
 const baseUrl = "http://localhost:4000/usuario";
-const cookies = new Cookies();
 
-class Login extends Component {
-  state = {
-    form: {
-      email: "",
-      password: "",
-    },
-  };
+const Login = () => {
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({
-      form: {
-        ...this.state.form,
-        [name]: value,
-      },
+  const navigate = useNavigate();
+
+  const [usuario, setUsuario] = useState({
+    email:'',
+    password:''
+  });
+
+  const {email, password} = usuario;
+
+  const onChange = (e) => {
+    setUsuario({
+      ...usuario,
+      [e.target.name]: e.target.value
     });
-  };
+  }
 
-  iniciarSesion = () => {
-    Axios.get(baseUrl, {
-      params: {
-        email: this.state.form.email,
-        password: this.state.form.password,
-      },
-    })
-      .then((response) => {
-        return response.data;
-      })
-      .then((response) => {
-        if (response.length > 0) {
-          var respuesta = response[0];
-          cookies.set("id", respuesta.id, { path: "/" });
-          cookies.set("nombre", respuesta.nombre, { path: "/" });
-          cookies.set("email", respuesta.email, { path: "/" });
-          alert(`Bienvenido al sistema.`);
-          window.location.href = "/dashboard";
-        } else {
-          alert("El usuario o la contraseña no son correctos");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+  const iniciarSesion = async () => {
+    if(password.length < 4){
+      const msg = 'Las contraseñas deben tener minimo 6 caractéres.';
+      swal({
+          title:'Advertencia',
+          text: msg,
+          icon:'error',
+          button:{
+              text:'Ok',
+              value:true,
+              visible:true,
+              className:'btn btn-danger',
+              closeModal: true
+          }
       });
-  };
+    }else{
+        const data = {
+            email: usuario.email,
+            password: usuario.password
+        }
+        const response = await APIInvoke.invokePOST(`/usuario`, data);
+        console.log(response)
 
-  render() {
+        const msg = 'Bienvenido al sistema.';
+        swal({
+            title:'Confirmación',
+            text: msg,
+            icon:'success',
+            button:{
+                text:'Ok',
+                value:true,
+                visible:true,
+                className:'btn btn-info',
+                closeModal: true
+            }
+        });
+
+        const jwt = response.token;
+
+        localStorage.setItem('Item', jwt);
+
+        navigate('/dashboard');
+    }
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    iniciarSesion();
+  }
+
+  useEffect(() => {
+    document.getElementById("email").focus();
+  }, []);
+
     return (
-      <div className="hold-transition login-page"> {/* Use className instead of class */}
+      <div className="hold-transition login-page"> 
         <div className="login-box">
           <div className="login-logo">
             <Link to={"#"}>
@@ -66,7 +91,7 @@ class Login extends Component {
               <p className="login-box-msg">
                 Bienvenido, por favor ingrese su informacion
               </p>
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className="input-group mb-3">
                   <input
                     type="email"
@@ -74,7 +99,9 @@ class Login extends Component {
                     placeholder="Correo electronico"
                     id="email"
                     name="email"
-                    onChange={this.handleChange}
+                    value={email}
+                    onChange={onChange}
+                    required
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -89,7 +116,9 @@ class Login extends Component {
                     placeholder="Contraseña"
                     id="password"
                     name="password"
-                    onChange={this.handleChange}
+                    value={password}
+                    onChange={onChange}
+                    required
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -100,9 +129,9 @@ class Login extends Component {
 
                 <div className="social-auth-links text-center mb-3">
                   <button
-                    type="button" 
+                    to={"#"}
+                    type="submit" 
                     className="btn btn-block btn-primary"
-                    onClick={this.iniciarSesion}
                   >
                     Ingresar
                   </button>
@@ -113,9 +142,6 @@ class Login extends Component {
                   <Link to={"/recover"} className="btn btn-block btn">
                       ¿Olvidaste tu contraseña?
                     </Link>
-                            <Link to={"/"} className="btn btn-block btn">
-                                Volver al home
-                            </Link>
                 </div>
               </form>
             </div>
@@ -124,6 +150,6 @@ class Login extends Component {
       </div>
     );
   }
-}
+
 
 export default Login;
