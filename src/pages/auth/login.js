@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { Component } from "react";
 import Axios from "axios";
-import md5 from "md5";
 import Cookies from "universal-cookie";
 
-const baseUrl = "http://localhost:5000/Paciente";
+const baseUrl = "http://localhost:4000/usuario";
 const cookies = new Cookies();
 
 class Login extends Component {
@@ -29,7 +28,7 @@ class Login extends Component {
     Axios.get(baseUrl, {
       params: {
         email: this.state.form.email,
-        password: md5(this.state.form.password),
+        password: this.state.form.password,
       },
     })
       .then((response) => {
@@ -39,15 +38,9 @@ class Login extends Component {
         if (response.length > 0) {
           var respuesta = response[0];
           cookies.set("id", respuesta.id, { path: "/" });
-          cookies.set("numIdentidadPa", respuesta.numIdentidadPa, { path: "/" });
-          cookies.set("nombrePa", respuesta.nombrePa, { path: "/" });
-          cookies.set("apellidoPa", respuesta.apellidoPa, { path: "/" });
-          cookies.set("tipoDocumentoPa", respuesta.tipoDocumentoPa, { path: "/" });
-          cookies.set("numeroPa", respuesta.numeroPa, { path: "/" });
-          cookies.set("epsPa", respuesta.epsPa, { path: "/" });
-          cookies.set("GeneroPa", respuesta.GeneroPa, { path: "/" });
+          cookies.set("nombre", respuesta.nombre, { path: "/" });
           cookies.set("email", respuesta.email, { path: "/" });
-          alert(`Bienvenido al sistema ${respuesta.nombrePa} ${respuesta.apellidoPa}`);
+          alert(`Bienvenido al sistema.`);
           window.location.href = "/dashboard";
         } else {
           alert("El usuario o la contraseña no son correctos");
@@ -113,13 +106,16 @@ class Login extends Component {
                   >
                     Ingresar
                   </button>
-                  <Link to={"/crearcuenta"} className="btn btn-block btn-danger">
+                  <Link to={"/register"} className="btn btn-block btn-danger">
                     Crear Cuenta
                   </Link>
 
-                  <p className="mb-1">
-                    <Link to={"/recover"}>¿Olvidaste tu contraseña?</Link>
-                  </p>
+                  <Link to={"/recover"} className="btn btn-block btn">
+                      ¿Olvidaste tu contraseña?
+                    </Link>
+                            <Link to={"/"} className="btn btn-block btn">
+                                Volver al home
+                            </Link>
                 </div>
               </form>
             </div>

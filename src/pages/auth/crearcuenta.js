@@ -180,9 +180,12 @@ const CrearCuenta = () => {
                             >
                                 Crear Cuenta
                             </button>
-                            <Link to={"/"} className="btn btn-block btn-danger">
+                            <Link to={"/login"} className="btn btn-block btn-danger">
                                 
                                 Iniciar Sesion
+                            </Link>
+                            <Link to={"/"} className="btn btn-block btn">
+                                Volver al home
                             </Link>
                         </div>
                         </form>
