@@ -13,12 +13,16 @@ const Dashboard = () => {
             <Sidebar></Sidebar>
             <div className="content-wrapper">
                 <Header
-                tittle={"Dashboard"}
-                breadcrumb_item_1={"Menu principal"}
-                breadcrumb_link_1={"/dashboard"}
-                breadcrumb_item_2={"Dashboard"}
+                    tittle={"Dashboard"}
+                    breadcrumb_item_1={"Menu principal"}
+                    breadcrumb_link_1={"/dashboard"}
+                    breadcrumb_item_2={"Dashboard"}
                 />
-                <Boxes></Boxes>
+                <Boxes
+                    tittle={"Proyectos"}
+                    text={"Administrador"}
+                    link={"/proyectsAdmin"}
+                />
             </div>
             <Footer></Footer>
         </div>

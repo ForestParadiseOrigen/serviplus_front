@@ -12,7 +12,7 @@ const Header = ({tittle, breadcrumb_item_1, breadcrumb_link_1, breadcrumb_item_2
                 <div className="col-sm-6">
                     <ol className="breadcrumb float-sm-right">
                         <li className="breadcrumb-item"><Link to={{breadcrumb_link_1}}>{breadcrumb_item_1}</Link></li>
-                        <li className="breadcrumb-item active">breadcrumb_item_2</li>
+                        <li className="breadcrumb-item active">{breadcrumb_item_2}</li>
                     </ol>
                 </div>
                 </div>
